@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="bean-config.xml"/>
+
+    <bean id="simpleBean" class="org.itstep.beans.impl.SimpleBeanImpl">
+        <constructor-arg name="msg" value="Hello Spring!"/>
+    </bean>
+    <bean id="complexBean" class="org.itstep.beans.impl.ComplexBeanImpl">
+        <constructor-arg name="bean" ref="simpleBean"/>
+        <constructor-arg name="complex" value="true"/>
+    </bean>
+
+    <bean id="simpleBean0" class="org.itstep.beans.impl.SimpleBeanImpl"
+          c:msg="Simple Bean0"/>
+    <bean id="simpleBean1" class="org.itstep.beans.impl.SimpleBeanImpl"
+          c:msg="Simple Bean1"/>
+    <bean id="complexBean2" class="org.itstep.beans.impl.ComplexBean2Impl"
+          c:_0-ref="simpleBean0" c:_1-ref="simpleBean1"/>
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="org.itstep.DateConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="userBean" class="org.itstep.beans.UserBean"
+          c:name="Max" c:birthDate="1981/05/24"/>
+
+    <bean id="collectionHolder" class="org.itstep.beans.CollectionHolder">
+        <property name="simpleBeanList">
+            <list>
+                <ref bean="simpleBean"/>
+                <bean class="org.itstep.beans.impl.SimpleBeanImpl" c:msg="Simple Bean in list"/>
+                <null/>
+            </list>
+        </property>
+        <property name="simpleBeanSet">
+            <set/>
+        </property>
+        <property name="simpleBeanMap">
+            <map>
+                <entry key="one" value-ref="simpleBean"/>
+                <entry key="two" value-ref="simpleBean1"/>
+            </map>
+        </property>
+    </bean>
+</beans>
