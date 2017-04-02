@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- TODO: Использование фабричного метода -->
+    <bean class="java.time.LocalTime" name="localTime" factory-method="now" />
+
+    <!-- TODO: Constructor dependency injection -->
+    <bean name="product1" class="org.itstep.bean.Product">
+        <constructor-arg name="name" value="product1"/>
+        <constructor-arg name="description" value="dummy description about product1"/>
+        <constructor-arg name="price" value="3.25"/>
+    </bean>
+
+    <!-- TODO: Setter dependency injection -->
+    <bean name="product2" class="org.itstep.bean.Product">
+        <property name="name" value="product2"/>
+        <property name="description" value="dummy description about product2"/>
+        <property name="price" value="3.45"/>
+    </bean>
+
+    <bean name="simpleAddress" class="org.itstep.bean.Address">
+        <constructor-arg name="city" value="Dnepr"/>
+        <constructor-arg name="country" value="Ukraine"/>
+        <constructor-arg name="line1" value="K.Marksa, 101"/>
+        <constructor-arg name="line2" value=""/>
+        <constructor-arg name="state" value=""/>
+        <constructor-arg name="zipCode" value="49000"/>
+    </bean>
+
+    <bean class="org.itstep.bean.Employee" name="employee">
+        <property name="homeAddress" ref="simpleAddress"/>
+        <property name="firstName" value="Name"/>
+        <property name="lastName" value="Surname" />
+    </bean>
+
+</beans>
