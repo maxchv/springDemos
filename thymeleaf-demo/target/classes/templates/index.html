@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Spring Boot</title>
+</head>
+<body>
+    <!--/*@thymesVar id="msg" type="java.lang.String"*/-->
+    <h1 th:text="${msg}"></h1>
+    <p><a th:href="@{/people}" href="/people">Users</a> </p>
+</body>
+</html>

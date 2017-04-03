@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>People</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>People</h1>
+<p><a th:href="@{/people/add}">Add</a></p>
+<!--/*@thymesVar id="msg" type="java.lang.String"*/-->
+<p th:text="${msg}"></p>
+<table>
+    <!--/*@thymesVar id="people" type="java.lang.Iterable<org.itstep.entity.Person>"*/-->
+    <tr th:each="person: ${people}">
+        <!--/*@thymesVar id="firstName" type="java.lang.String"*/-->
+        <td th:text="${person.firstName}"></td>
+        <!--/*@thymesVar id="lastName" type="java.lang.String"*/-->
+        <td th:text="${person.lastName}"></td>
+        <td>
+            <!--/*@thymesVar id="id" type="java.lang.Long"*/-->
+            <a th:href="@{'/people/info/' + ${person.id}}">Details</a></td>
+        <td><a th:href="@{'/people/delete/'+ ${person.id}}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>
